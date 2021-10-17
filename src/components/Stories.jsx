@@ -2,16 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  grid-area: header;
+  /* width: 900px;
+  height: 100px; */
   background-color: white;
-
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  grid-area: stories;
 `;
 
-const Header = () => {
+const Stories = () => {
   return <Container></Container>;
 };
 
-export default Header;
+export default Stories;

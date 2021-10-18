@@ -10,12 +10,13 @@ export const Container = styled.div`
   background-color: #f1f1f1;
 
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: 80px 100vh;
   grid-template-areas:
     "left stories"
     "left posts";
   padding: 20px 0;
+  row-gap: 20px;
 `;
 
 export default function Home() {

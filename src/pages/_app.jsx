@@ -7,7 +7,7 @@ import Right from "../components/Right";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 0.5fr;
+  grid-template-columns: 1fr 0.3fr;
   grid-template-rows: 80px min-content;
   grid-template-areas:
     "header header"

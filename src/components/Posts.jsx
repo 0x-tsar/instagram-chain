@@ -43,7 +43,9 @@ const Posts = () => {
         ></div>
         <h3>Profile Name</h3>
       </div>
-      <div style={{ gridArea: "post", backgroundColor: "green" }}></div>
+      <div style={{ gridArea: "post", backgroundColor: "green" }}>
+        <img src="" alt="" />
+      </div>
       <div style={{ gridArea: "menuBottom", backgroundColor: "red" }}></div>
     </Container>
   );

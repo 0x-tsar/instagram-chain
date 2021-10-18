@@ -10,8 +10,8 @@ export const Container = styled.div`
   background-color: #f1f1f1;
 
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 80px 100vh;
+  grid-template-columns: 1fr 700px;
+  grid-template-rows: 100px 80vh;
   grid-template-areas:
     "left stories"
     "left posts";

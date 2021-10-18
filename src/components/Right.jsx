@@ -12,7 +12,12 @@ export const Holder = styled.div`
   height: 400px;
   display: flex;
   background-color: yellow;
+  margin-left: 20px;
   /* justify-content: center; */
+
+  @media only screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 const Right = () => {

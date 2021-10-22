@@ -7,6 +7,15 @@ contract Instagram is ERC20 {
     address public admin;
     uint256 public nextId;
 
+    event PostCreated(
+        address creator,
+        uint256 postId,
+        uint256 timestamp,
+        uint256 likes,
+        string message,
+        string pictureHash
+    );
+
     struct postStruct {
         address creator;
         uint256 postId;
@@ -24,6 +33,15 @@ contract Instagram is ERC20 {
         external
     {
         posts[nextId] = postStruct(
+            msg.sender,
+            nextId,
+            block.timestamp,
+            0,
+            _message,
+            _pictureHash
+        );
+
+        emit PostCreated(
             msg.sender,
             nextId,
             block.timestamp,

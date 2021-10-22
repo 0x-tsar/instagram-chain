@@ -28,7 +28,6 @@ export const loadEthereum = async () =>
           });
 
           resolve({ instagram, web3 });
-          // return { Instagram, web3 };
         }
         resolve({ instagram: undefined, web3: undefined });
       } else {

@@ -11,9 +11,16 @@ export const AuthProvider = (props) => {
 
   useEffect(() => {
     const done = async () => {
-      const { instagram, web3 } = await loadEthereum();
-      // console.log(instagram);
+      // const { instagram } = await loadEthereum();
+      const { instagram } = await loadEthereum();
+      console.log(instagram);
+      // if (cards && web3) {
+      // const account = await web3.currentProvider.selectedAddress;
+      // // console.log(await cards.methods.admin().call());
+      // const balance = await cards.methods.balanceOf(cards._address).call();
 
+      // const { instagram, web3 } = await loadEthereum();
+      // console.log(instagram);
       // if (cards && web3) {
       //   const account = await web3.currentProvider.selectedAddress;
       //   // console.log(await cards.methods.admin().call());
@@ -27,7 +34,6 @@ export const AuthProvider = (props) => {
       //     const item = await cards.methods
       //       .marketCards(cards._address, token)
       //       .call();
-
       //     // console.log(item);
       //     setMarketCards((marketCards) => [...marketCards, item]);
       //   }
@@ -36,7 +42,6 @@ export const AuthProvider = (props) => {
       //////////////////////
       //////////////////////
       // reading users items
-
       //   const account = await web3.currentProvider.selectedAddress;
       //   const balanceEther = await web3.eth.getBalance(account);
       //   setMyInfos({
@@ -45,7 +50,6 @@ export const AuthProvider = (props) => {
       //     cards: cards,
       //     web3: web3,
       //   });
-
       //   const balanceUser = await cards.methods.balanceOf(account).call();
       //   console.log(`balance user: ${balanceUser}`);
       //   for (let i = 0; i < balanceUser; i++) {
@@ -55,10 +59,8 @@ export const AuthProvider = (props) => {
       //     const token = await cards.methods.tokenByIndex(tokenId).call();
       //     const item = await cards.methods.myCards(account, token).call();
       //     console.log(item);
-
       //     setMyCards((myCards) => [...myCards, item]);
       //   }
-
       //   cards.events
       //     .cardMinted({})
       //     .on("data", async function (event) {
@@ -67,7 +69,6 @@ export const AuthProvider = (props) => {
       //       setMarketCards((marketCards) => [...marketCards, event.returnValues]);
       //     })
       //     .on("error", console.error);
-
       //   //
       //   cards.events
       //     .cardTransfered({})

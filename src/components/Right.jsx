@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+
+import fleekStorage from "@fleekhq/fleek-storage-js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import confetti from "canvas-confetti";
 
 export const Container = styled.div`
   grid-area: right;
@@ -19,6 +24,7 @@ export const Holder = styled.div`
     display: none;
   }
 `;
+
 export const HolderCreatePost = styled.div`
   width: 400px;
   height: 400px;
@@ -40,46 +46,88 @@ export const HolderCreatePost = styled.div`
 `;
 
 const Right = () => {
+  const [state, setState] = useState({
+    description: "",
+    pictureHash: "",
+  });
+
+  const setStorage = async (e) => {
+    const data = e.target.files[0];
+
+    try {
+      const uploadedFile = await fleekStorage.upload({
+        apiKey: "+Gxl/Kv/k+cdc1W4dTyP4Q==",
+        apiSecret: "+ldkPR3rw+7jp6j74Koi5/8JHHPD2zwx40uxekH1hEw=",
+        key: data.name,
+        data: data,
+      });
+
+      //   // const tx = await info.bookContract.methods
+      //   //   .createNewBook("book 2", value, bookUrl)
+      //   //   .send({ from: info.currentAddress });
+      //   // console.log(tx);
+
+      setState({
+        ...state,
+        pictureHash: `https://ipfs.io/ipfs/${uploadedFile.hash}`,
+      });
+      console.log(uploadedFile);
+    } catch (error) {
+      console.log("Error uploading file: ", error);
+    }
+  };
+
+  const notify = () => toast("❌ A Picture and a description must be provided");
+
+  const submit = (e) => {
+    e.preventDefault();
+
+    if (state.description !== "" && state.pictureHash !== "") {
+      console.log(state);
+      confetti({
+        particleCount: 300,
+        spread: 200,
+        origin: { x: 0.5, y: 0.3 },
+      });
+    } else {
+      notify();
+      return;
+    }
+  };
+
   return (
     <Container>
+      <ToastContainer />
       <Holder></Holder>
       <HolderCreatePost>
-        <form>
+        <form onSubmit={submit}>
           <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Email address</label>
+            <label htmlFor="message">Message</label>
             <input
-              type="email"
+              onChange={(e) =>
+                setState({ ...state, description: e.target.value })
+              }
+              value={state.description}
+              type="text"
               className="form-control"
-              id="exampleInputEmail1"
+              id="message"
               aria-describedby="emailHelp"
-              placeholder="Enter email"
+              placeholder="your post message here"
             />
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
           </div>
+
           <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Password</label>
+            <label htmlFor="cardUrlPicture">Picture Url</label>
             <input
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
+              type="file"
+              onChange={setStorage}
+              defaultValue={""}
+              // className="form-control p-3"
+              // id="cardUrlPicture"
+              aria-describedby="cardUrlPicture"
+              // placeholder="Card Input"
             />
           </div>
-          <div className="form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Check me out
-            </label>
-          </div>
-          {/* <button type="submit" className="btn btn-primary">
-            Submit
-          </button> */}
 
           <button type="submit" className="btn btn-primary w-50 h-20 mb-3">
             Create Post

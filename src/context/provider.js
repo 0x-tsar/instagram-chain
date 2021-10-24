@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import loadEthereum from "../ethereum";
+
 export const AuthContext = createContext({});
 
 export const AuthProvider = (props) => {
@@ -10,26 +11,25 @@ export const AuthProvider = (props) => {
 
   useEffect(() => {
     const done = async () => {
-      // const { instagram } = await loadEthereum();
       const { instagram, web3 } = await loadEthereum();
-      console.log(instagram);
       if (instagram && web3) {
         const account = await web3.currentProvider.selectedAddress;
-        // // console.log(await cards.methods.admin().call());
+        // setMyInfos({
+        //   account: account,
+        //   // balanceEther: balanceEther,
+        //   instagram: instagram,
+        //   web3: web3,
+        // });
+
+        setWeb3(web3);
+        setInstgram(instagram);
 
         const totalPosts = await instagram.methods.nextId().call();
-
-        console.log(totalPosts);
 
         for (let i = 0; i < totalPosts; i++) {
           const post = await cards.methods.posts(i).call();
           console.log(post);
         }
-
-        //     // console.log(item);
-        //     setMarketCards((marketCards) => [...marketCards, item]);
-        //   }
-        // }
 
         instagram.events
           .PostCreated({})
@@ -38,6 +38,8 @@ export const AuthProvider = (props) => {
             setPosts((posts) => [...posts, event.returnValues]);
           })
           .on("error", console.error);
+      } else {
+        console.log("PROBLEM HERE");
       }
     };
 
@@ -48,12 +50,8 @@ export const AuthProvider = (props) => {
     <AuthContext.Provider
       value={{
         web3,
-        myInfos,
-        setMyInfos,
-        instagram,
-        setInstgram,
         posts,
-        setPosts,
+        instagram,
       }}
     >
       {props.children}

@@ -4,6 +4,7 @@ import styles from "../../styles/Home.module.css";
 import styled from "styled-components";
 import Stories from "../components/Stories";
 import PostsHolder from "../components/PostsHolder";
+// import { AuthProvider } from "../context/provider";
 
 export const Container = styled.div`
   grid-area: main;
@@ -21,6 +22,7 @@ export const Container = styled.div`
 
 export default function Home() {
   return (
+    // <AuthProvider>
     <Container>
       <Head>
         <title>Create Next App</title>
@@ -38,5 +40,6 @@ export default function Home() {
       <Stories></Stories>
       <PostsHolder></PostsHolder>
     </Container>
+    // </AuthProvider>
   );
 }

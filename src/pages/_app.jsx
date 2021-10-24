@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import Header from "../components/Header";
 // import Main from "../components/Main";
 import Right from "../components/Right";
-import { useContext } from "react";
+// import { useContext } from "react";
 import { AuthProvider } from "../context/provider";
 
 export const Container = styled.div`
@@ -24,15 +24,17 @@ export const Container = styled.div`
 `;
 
 function MyApp({ Component, pageProps }) {
-  const { web3 } = AuthProvider(useContext);
+  // const { web3 } = AuthProvider(useContext);
 
   return (
-    <Container>
-      <Header></Header>
-      {/* <Main></Main> */}
-      <Right></Right>
-      <Component {...pageProps} />
-    </Container>
+    <AuthProvider>
+      <Container>
+        <Header></Header>
+        {/* <Main></Main> */}
+        <Right></Right>
+        <Component {...pageProps} />
+      </Container>
+    </AuthProvider>
   );
 }
 

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { AuthContext } from "../context/provider";
 
 import fleekStorage from "@fleekhq/fleek-storage-js";
 import { ToastContainer, toast } from "react-toastify";
@@ -51,6 +52,11 @@ const Right = () => {
     pictureHash: "",
   });
 
+  const { web3, instagram } = useContext(AuthContext);
+
+  console.log(web3);
+  console.log(instagram);
+
   const setStorage = async (e) => {
     const data = e.target.files[0];
 
@@ -81,6 +87,9 @@ const Right = () => {
 
   const submit = (e) => {
     e.preventDefault();
+
+    console.log(instagram);
+    // if (instagram) console.log(instagram);
 
     if (state.description !== "" && state.pictureHash !== "") {
       console.log(state);
